@@ -2,8 +2,8 @@
 	<v-container fluid>
 		<v-row>
 			<v-col>
-				<h1>About</h1>
-				<p>This is a simple about page.</p>
+				<h1>Settings</h1>
+				<p>This is a simple settings page.</p>
 			</v-col>
 		</v-row>
 	</v-container>

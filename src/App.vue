@@ -1,61 +1,45 @@
 <template>
-  <v-app>
-    <v-app-bar
-      app
-      color="primary"
-      dark
-    >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
+	<v-app>
+		<navigation-bar></navigation-bar>
 
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
+		<v-content>
+			<router-view></router-view>
+			<multi-purpose-snackbar></multi-purpose-snackbar>
+		</v-content>
 
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-content>
-      <HelloWorld/>
-    </v-content>
-  </v-app>
+		<footer-bar></footer-bar>
+	</v-app>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import { Vue, Component, Watch } from "vue-property-decorator";
+import { Get } from "vuex-pathify";
+import NavigationBar from "@/components/NavigationBar.vue";
+import FooterBar from "@/components/FooterBar.vue";
+import MultiPurposeSnackbar from "@/components/MultiPurposeSnackbar.vue";
 
-export default Vue.extend({
-  name: 'App',
-
+@Component({
   components: {
-    HelloWorld,
-  },
+    NavigationBar,
+    FooterBar,
+    MultiPurposeSnackbar
+  }
+})
+export default class App extends Vue {
+  @Get("settings@isThemeDark") private isThemeDark!: Settings["isThemeDark"];
+  @Get("user") private user!: User;
 
-  data: () => ({
-    //
-  }),
-});
+  mounted() {
+    this.$vuetify.theme.dark = this.isThemeDark;
+
+    if (this.user.authenticated) {
+      // Do stuff if there is any
+    }
+  }
+
+  @Watch("isThemeDark")
+  onThemeSwitch(switchedValue: boolean) {
+    this.$vuetify.theme.dark = switchedValue;
+  }
+}
 </script>
