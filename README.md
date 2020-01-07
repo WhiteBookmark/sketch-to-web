@@ -10,6 +10,8 @@ Sketched UI:
 ![Sketched UI](https://raw.githubusercontent.com/WhiteBookmark/sketch-to-web/master/sketch.png "UI")
 
 
+Although the live page is not exactly the same, but still it matches most of the components shown in the image.
+
 ## Project setup
 ```
 npm install
