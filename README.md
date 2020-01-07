@@ -1,7 +1,8 @@
-# vue-typescript-starter-app
+# Sketch to Web
 
 ## Project Description
-Boilerplate for project which uses Vue + TypeScript.
+Sample project used for showing code for a sketched UI.
+
 ## Project setup
 ```
 npm install

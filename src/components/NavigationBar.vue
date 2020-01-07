@@ -1,29 +1,43 @@
 <template>
-	<v-app-bar app color="background">
-		<v-toolbar-title>
-			<v-btn text color="primary">Vue + TypeScript Boilerplate</v-btn>
-		</v-toolbar-title>
-
-		<v-spacer></v-spacer>
-
-		<theme-button></theme-button>
-		<navigation-buttons></navigation-buttons>
-		<auth-button></auth-button>
+	<v-app-bar app elevation="0">
+		<v-container fluid fill-height>
+			<v-row no-gutters>
+				<v-col class="text-left">
+					<v-toolbar-title>
+						<v-btn icon color="weakPrimary">
+							<v-icon x-large>{{Icons.mdiArrowLeftThick}}</v-icon>
+						</v-btn>
+						<small class="weakPrimary--text caption">PITCHED ROOF</small>
+					</v-toolbar-title>
+				</v-col>
+				<v-col>
+					<v-tabs slider-color="secondary" active-class="black--text" slider-size="8" grow>
+						<v-tab>LOCATION</v-tab>
+						<v-tab>DESIGN</v-tab>
+						<v-tab>QUOTE</v-tab>
+					</v-tabs>
+				</v-col>
+				<v-col class="text-right">
+					<small class="weakPrimary--text body-2 mr-4">Warren Buffet</small>
+					<v-btn fab small elevation="0" color="weakSecondary">
+						<p class="white--text pa-0 ma-0">WB</p>
+					</v-btn>
+				</v-col>
+			</v-row>
+		</v-container>
 	</v-app-bar>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
-import AuthButton from "@/components/AuthButton.vue";
-import NavigationButtons from "@/components/NavigationButtons.vue";
-import ThemeButton from "@/components/ThemeButton.vue";
+import { mdiArrowLeftThick } from "@mdi/js";
 
-@Component({
-  components: {
-    AuthButton,
-    NavigationButtons,
-    ThemeButton
+@Component
+export default class NavigationBar extends Vue {
+  get Icons() {
+    return {
+      mdiArrowLeftThick
+    };
   }
-})
-export default class NavigationBar extends Vue {}
+}
 </script>

@@ -1,52 +1,21 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import Home from '@/views/Home.vue';
-
-const About = () => import('@/views/About.vue');
-const Settings = () => import('@/views/Settings.vue');
+import Location from '@/views/Location.vue';
 
 Vue.use(VueRouter);
-
-// Router guard function verifies authentication
-function EnsureAuthenticated(to: any, from: any, next: any) {
-	const IsAuthenticated: User['authenticated'] = store.get('user@@authenticated');
-	if (IsAuthenticated) {
-		next();
-	} else {
-		next('/');
-	}
-}
 
 const routes = [
 	{
 		path: '/',
-		name: 'home',
-		component: Home,
-	},
-	{
-		path: '/about',
-		name: 'about',
-		component: About,
-	},
-	{
-		path: '/settings',
-		name: 'settings',
-		component: Settings,
-		beforeEnter: EnsureAuthenticated,
+		name: 'location',
+		component: Location,
 	},
 ];
 
 const router = new VueRouter({
 	mode: 'history',
 	base: process.env.BASE_URL,
-	scrollBehavior(to: any, from: any, savedPosition: any) {
-		if (savedPosition) {
-			return savedPosition;
-		} else {
-			return { x: 0, y: 0 };
-		}
-	},
 	routes,
 });
 
